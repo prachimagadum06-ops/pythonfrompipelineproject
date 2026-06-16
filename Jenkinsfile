@@ -14,9 +14,7 @@ pipeline{
             }
             stage ('stage three install pip'){
                 steps{
-                    bat """
-                    pip install -r requirements.txt
-                    """
+                    bat '"C:\\Users\\Dell\\AppData\\Local\\Python\\bin\\python.exe" -m pip install -r requirements.txt'
                 }
             }
             stage ('stage four run app'){
