@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h1>{{ message }}</h1>
+
+        <p>
+            Modern Flask application integrated with Jenkins CI/CD pipeline.
+        </p>
+
+        <a href="/about" class="btn">
+            Learn More
+        </a>
+
+        <div class="features">
+            <div class="feature">
+                <h3>🚀 CI/CD</h3>
+                <p>Automated Jenkins pipelines.</p>
+            </div>
+
+            <div class="feature">
+                <h3>🐍 Flask</h3>
+                <p>Lightweight Python web framework.</p>
+            </div>
+
+            <div class="feature">
+                <h3>🧪 Testing</h3>
+                <p>Pytest integration for quality checks.</p>
+            </div>
+
+            <div class="feature">
+                <h3>☁️ Deploy</h3>
+                <p>Ready for cloud deployment.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

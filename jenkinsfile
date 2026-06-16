@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+
+    environment {
+        VENV = "venv"
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                python3 -m venv ${VENV}
+                . ${VENV}/bin/activate
+                pip install --upgrade pip
+                pip install -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Run Unit Tests') {
+            steps {
+                sh '''
+                . ${VENV}/bin/activate
+                pytest -v
+                '''
+            }
+        }
+
+        stage('Archive Application') {
+            steps {
+                sh '''
+                mkdir -p build
+                tar -czf build/flask-app.tar.gz \
+                    app.py \
+                    requirements.txt \
+                    templates \
+                    static
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            archiveArtifacts artifacts: 'build/*.tar.gz'
+            echo 'Pipeline completed successfully'
+        }
+
+        always {
+            sh 'rm -rf venv || true'
+        }
+    }
+}
