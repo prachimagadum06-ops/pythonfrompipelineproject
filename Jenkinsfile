@@ -9,7 +9,7 @@ pipeline{
             }
             stage ('stage two check python'){
                 steps{
-                    bat  """python --version"""
+                    bat '"C:\\Users\\Dell\\AppData\\Local\\Python\\bin\\python.exe" --version'
                 }
             }
             stage ('stage three install pip'){
@@ -21,9 +21,9 @@ pipeline{
             }
             stage ('stage four run app'){
                 steps{
-                    bat """
-                    python app.py
-                    """
+                
+                bat '"C:\\Users\\Dell\\AppData\\Local\\Python\\bin\\python.exe" app.py'
+                    
                 }
             }
         }
